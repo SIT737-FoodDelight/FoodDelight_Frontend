@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
+import Signup from './components/SignUp/signup'
 import Login from './components/login/login'
+import Home from './components/Home/home'
 
 export default () => {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+  const [isRegister, setIsRegister] = useState(false)
+
   return (
     <div className="App">
-      <h1> Welcome there!</h1>
-      <Login />
+      {!isUserLoggedIn && !isRegister && (
+        <Login
+          setIsUserLoggedIn={setIsUserLoggedIn}
+          setIsRegister={setIsRegister}
+        />
+      )}
+      {!isUserLoggedIn && isRegister && (
+        <Signup setIsRegister={setIsRegister} />
+      )}
+      {isUserLoggedIn && <Home />}
     </div>
   )
 }
