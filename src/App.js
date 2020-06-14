@@ -1,15 +1,25 @@
-import React from 'react';
-import logo from './../src/images/foodiesfeed.com_vegan-chickpea-and-potato-curry.jpg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import Signup from './components/SignUp/signup'
+import Login from './components/login/login'
+import Home from './components/Home/home'
 
 export default () => {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+  const [isRegister, setIsRegister] = useState(false)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1> Hey this is our food delight app</h1>
-      </header>
+      {!isUserLoggedIn && !isRegister && (
+        <Login
+          setIsUserLoggedIn={setIsUserLoggedIn}
+          setIsRegister={setIsRegister}
+        />
+      )}
+      {!isUserLoggedIn && isRegister && (
+        <Signup setIsRegister={setIsRegister} />
+      )}
+      {isUserLoggedIn && <Home />}
     </div>
-    )
+  )
 }
-
