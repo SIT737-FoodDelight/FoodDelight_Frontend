@@ -3,14 +3,27 @@ import facebookSvg from '../../assets/images/facebook.svg'
 import googleSvg from '../../assets/images/google-icon.svg'
 import signupJpg from '../../assets/images/signup.jpg'
 import '../../assets/css/style.css'
+import axios from 'axios'
+import { API_BASE_URL } from '../Constants/constants'
 
 export default (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSignIn = () => {
-    alert('Clicked signin with ' + username + ' and password ' + password)
-    props.setIsUserLoggedIn(true);
+    axios({
+      method: 'POST',
+      url: API_BASE_URL + 'login/',
+      headers: { 'Content-Type': 'application/json' },
+      data: { username: username, password: password },
+    })
+      .then((response) => {
+        if (response.data == 'login_Success') {
+          props.setIsUserLoggedIn(true)
+          props.setUsername(username)
+        } else alert('login failed')
+      })
+      .catch((reason) => alert('login failed' + reason))
   }
 
   return (
@@ -75,9 +88,13 @@ export default (props) => {
             <button className="signup-btn" onClick={handleSignIn}>
               Login
             </button>
-                <button className="signup-btn" type="button" onClick={() => props.setIsRegister(true)}>
-                  Register
-                </button>
+            <button
+              className="signup-btn"
+              type="button"
+              onClick={() => props.setIsRegister(true)}
+            >
+              Register
+            </button>
           </div>
         </div>
       </main>

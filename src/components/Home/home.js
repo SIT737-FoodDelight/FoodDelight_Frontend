@@ -1,10 +1,10 @@
 import React from 'react'
 import NavigationBar from '../Navigation/navigation'
 
-export default () => {
+export default (props) => {
     return (
       <div>
-          <NavigationBar />
+          <NavigationBar username={props.username} />
       </div>
     )
   }

@@ -13,7 +13,7 @@ export default (props) => {
   return (
     <div>
       <BrowserRouter>
-        <Link exact to="/OrderFood" >
+        <Link exact="true" to="/OrderFood" >
           <button>Order Food</button>
         </Link>
         <Link to="/CookFood">
@@ -33,7 +33,7 @@ export default (props) => {
         </Link>
         <Switch>
           <Route path="/OrderFood">
-            <OrderFood />
+            <OrderFood username={props.username}/>
           </Route>
           <Route path="/CookFood">
             <CookFood />

@@ -3,6 +3,8 @@ import facebookSvg from '../../assets/images/facebook.svg'
 import googleSvg from '../../assets/images/google-icon.svg'
 import signupJpg from '../../assets/images/signup.jpg'
 import '../../assets/css/style.css'
+import axios from 'axios'
+import {API_BASE_URL} from '../Constants/constants'
 
 export default (props) => {
 
@@ -11,8 +13,21 @@ export default (props) => {
     const [mobile, setMobile] = useState('')
 
  const handleRegistration = () => {
-     alert(username+' '+password+' '+mobile)
-     props.setIsRegister(false)
+  axios({
+    method: 'POST',
+    url: API_BASE_URL + 'register/',
+    headers: { 'Content-Type': 'application/json' },
+    data: {username: username, password: password, mobileNumber: mobile}
+  })
+  .then((response) => {
+    if(response.data == 'registered') {
+      alert("Registration Successful") 
+      props.setIsRegister(false)
+    }
+    else alert("login failed")
+  })
+  .catch((reason)=> alert("login failed"+reason))
+     
  }
   return (
     <div>
