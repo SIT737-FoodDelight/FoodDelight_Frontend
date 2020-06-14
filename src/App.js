@@ -1,15 +1,12 @@
-import React from 'react';
-import logo from './../src/images/foodiesfeed.com_vegan-chickpea-and-potato-curry.jpg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import Login from './components/login/login'
 
 export default () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1> Hey this is our food delight app</h1>
-      </header>
+      <h1> Welcome there!</h1>
+      <Login />
     </div>
-    )
+  )
 }
-
