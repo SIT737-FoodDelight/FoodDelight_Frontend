@@ -7,39 +7,43 @@ import ManageAccount from '../ManageAccount/manageAccount'
 import OrderFood from '../OrderFood/orderFood'
 import Logout from '../Logout/logout'
 
-
-
 export default (props) => {
   return (
     <div>
       <BrowserRouter>
-        <Link exact to="/OrderFood" >
-          <button>Order Food</button>
-        </Link>
-        <Link to="/CookFood">
-          Cook Food
-        </Link>
-        <Link to="/ManageAccount">
-          Manage Account
-        </Link>
-        <Link to="/AboutUs">
-          About us
-        </Link>
-        <Link to="/ContactUs" >
-          Contact us
-        </Link>
-        <Link to="/logout" >
-          Logout
-        </Link>
+        <div className="fixed-header">
+        <div className="container">
+          <nav>
+            <Link exact="true" to="/OrderFood">
+              <button>Order Food</button>
+            </Link>
+            <Link to="/CookFood">
+              <button>Cook Food</button>
+            </Link>
+            <Link to="/ManageAccount">
+              <button>Manage Account</button>
+            </Link>
+            <Link to="/AboutUs">
+              <button>About us</button>
+            </Link>
+            <Link to="/ContactUs">
+              <button>Contact us</button>
+            </Link>
+            <Link to="/logout">
+              <button>Logout</button>
+            </Link>
+          </nav>
+        </div>
+        </div>
         <Switch>
-          <Route path="/OrderFood">
-            <OrderFood />
+          <Route exact path="/OrderFood">
+            <OrderFood username={props.username} authToken={props.authToken}/>
           </Route>
           <Route path="/CookFood">
-            <CookFood />
+            <CookFood username={props.username} authToken={props.authToken}/>
           </Route>
           <Route path="/ManageAccount">
-            <ManageAccount />
+            <ManageAccount username={props.username} authToken={props.authToken}/>
           </Route>
           <Route path="/AboutUs">
             <AboutUs />
