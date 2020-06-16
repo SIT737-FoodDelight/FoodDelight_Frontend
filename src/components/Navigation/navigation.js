@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import CookFood from '../CookFood/cookFood'
 import AboutUs from '../AboutUs/aboutUs'
-import ContactUs from '../ContactUs/contactUs'
 import ManageAccount from '../ManageAccount/manageAccount'
 import OrderFood from '../OrderFood/orderFood'
 import Logout from '../Logout/logout'
@@ -26,9 +25,6 @@ export default (props) => {
             <Link to="/AboutUs">
               <button>About us</button>
             </Link>
-            <Link to="/ContactUs">
-              <button>Contact us</button>
-            </Link>
             <Link to="/logout">
               <button>Logout</button>
             </Link>
@@ -47,9 +43,6 @@ export default (props) => {
           </Route>
           <Route path="/AboutUs">
             <AboutUs />
-          </Route>
-          <Route path="/ContactUs">
-            <ContactUs />
           </Route>
           <Route path="/logout">
             <Logout />

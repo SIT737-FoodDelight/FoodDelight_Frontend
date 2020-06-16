@@ -102,32 +102,15 @@ Row.propTypes = {
 	row: PropTypes.shape({
 		orderId: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
-		price: PropTypes.number.isRequired,
-		dueDate: PropTypes.number.isRequired,
+		price: PropTypes.string.isRequired,
+		dueDate: PropTypes.string.isRequired,
 		itemDesc: PropTypes.string.isRequired,
 	}).isRequired,
 };
 
 export default props => {
 	const [reloadData, setReloadData] = useState(true);
-	const [orders, setOrders] = useState([]);
 	const [rows, setRows] = useState([]);
-
-	// useEffect(() => {
-	// 	axios({
-	// 		method: "POST",
-	// 		url: API_BASE_URL + "orders/",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 			authToken: props.authToken,
-	// 		},
-	// 		data: { username: props.username },
-	// 	}).then(response => {
-	// 		console.log(response);
-	// 		const res = eval(response.data);
-	// 		setOrders(res);
-	// 	});
-	// }, [reloadData]);
 
 	useEffect(() => {
 		axios({

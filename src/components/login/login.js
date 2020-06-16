@@ -11,12 +11,49 @@ export default (props) => {
   const [password, setPassword] = useState('')
 
   const handleSignIn = () => {
-  
     axios({
       method: 'POST',
       url: API_BASE_URL + 'login/',
       headers: { 'Content-Type': 'application/json' },
       data: { username: username, password: password},
+    })
+      .then((response) => {
+        console.warn(response.data)
+        if (response.data.message == 'login_Success') {
+          props.setIsUserLoggedIn(true)
+          props.setUsername(username)
+          props.setAuthToken(response.data.authToken)
+        } else alert('login failed')
+      })
+      .catch((reason) => alert('login failed' + reason))
+  }
+
+  const handleGoogleLogin = () => {
+    axios({
+      method: 'POST',
+      url: API_BASE_URL + 'auth/google',
+      headers: { 'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+    },
+    })
+      .then((response) => {
+        console.warn(response.data)
+        if (response.data.message == 'login_Success') {
+          props.setIsUserLoggedIn(true)
+          props.setUsername(username)
+          props.setAuthToken(response.data.authToken)
+        } else alert('login failed')
+      })
+      .catch((reason) => alert('login failed' + reason))
+  }
+
+  const handleFacebookLogin = () => {
+    axios({
+      method: 'GET',
+      url: API_BASE_URL + 'auth/google',
+      headers: { 'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+    },
     })
       .then((response) => {
         console.warn(response.data)
@@ -40,8 +77,7 @@ export default (props) => {
       <main>
         <div className="main-container">
           <div className="social-btn">
-            <form action="/auth/google" method="GET">
-              <button type="submit" className="google-btn">
+              <button className="google-btn" onClick={handleGoogleLogin}>
                 <div className="btn-container">
                   <img
                     src={googleSvg}
@@ -52,9 +88,7 @@ export default (props) => {
                 </div>
                 <span className="google-btn-text">Sign up via Google</span>
               </button>
-            </form>
-            <form action="/auth/facebook" method="GET">
-              <button type="submit" className="facebook-btn">
+              <button onClick={handleFacebookLogin} className="facebook-btn">
                 <div className="btn-container">
                   <img
                     src={facebookSvg}
@@ -65,7 +99,6 @@ export default (props) => {
                 </div>
                 <span className="facebook-btn-text">Sign up via Facebook</span>
               </button>
-            </form>
           </div>
           <div className="form-container">
             <h2 className="form-title">Sign in with Email</h2>
