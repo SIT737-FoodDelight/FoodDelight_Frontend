@@ -11,16 +11,19 @@ export default (props) => {
   const [password, setPassword] = useState('')
 
   const handleSignIn = () => {
+  
     axios({
       method: 'POST',
       url: API_BASE_URL + 'login/',
       headers: { 'Content-Type': 'application/json' },
-      data: { username: username, password: password },
+      data: { username: username, password: password},
     })
       .then((response) => {
-        if (response.data == 'login_Success') {
+        console.warn(response.data)
+        if (response.data.message == 'login_Success') {
           props.setIsUserLoggedIn(true)
           props.setUsername(username)
+          props.setAuthToken(response.data.authToken)
         } else alert('login failed')
       })
       .catch((reason) => alert('login failed' + reason))
