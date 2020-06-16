@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9bc65ff2.chunk.css",
+    "main.js": "/static/js/main.ef9786c7.chunk.js",
+    "main.js.map": "/static/js/main.ef9786c7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e361c62d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e361c62d.js.map",
+    "static/js/2.36aed4b1.chunk.js": "/static/js/2.36aed4b1.chunk.js",
+    "static/js/2.36aed4b1.chunk.js.map": "/static/js/2.36aed4b1.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.823523a58ee485c2e66f65694f8f9e2b.js": "/precache-manifest.823523a58ee485c2e66f65694f8f9e2b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.9bc65ff2.chunk.css.map": "/static/css/main.9bc65ff2.chunk.css.map",
+    "static/js/2.36aed4b1.chunk.js.LICENSE.txt": "/static/js/2.36aed4b1.chunk.js.LICENSE.txt",
+    "static/media/aboutus.jpg": "/static/media/aboutus.db0c2b6c.jpg",
+    "static/media/cookfood.jpg": "/static/media/cookfood.2f667694.jpg",
+    "static/media/facebook.svg": "/static/media/facebook.f61c4b86.svg",
+    "static/media/google-icon.svg": "/static/media/google-icon.bbd72a78.svg",
+    "static/media/manageAccount.jpg": "/static/media/manageAccount.6661cf86.jpg",
+    "static/media/style.css": "/static/media/wpf_password1.6214637f.svg",
+    "static/media/orderFood.jpg": "/static/media/orderFood.d19966f5.jpg",
+    "static/media/signup.jpg": "/static/media/signup.57730fb3.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e361c62d.js",
+    "static/js/2.36aed4b1.chunk.js",
+    "static/css/main.9bc65ff2.chunk.css",
+    "static/js/main.ef9786c7.chunk.js"
+  ]
+}
