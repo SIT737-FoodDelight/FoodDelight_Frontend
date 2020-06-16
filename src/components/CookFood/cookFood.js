@@ -3,7 +3,7 @@ import "../../assets/css/style.css";
 import axios from "axios";
 import { API_BASE_URL } from "../Constants/constants";
 import cookFoodJpg from "../../assets/images/cookfood.jpg";
-import Orders from "./showOrders";
+import Orders from "./orders";
 
 export default props => {
 	const [tfn, setTfn] = useState("");
@@ -34,12 +34,7 @@ export default props => {
 	};
 
 	return (
-		<div className="main-container">
-			<img
-				className="orderfood-image"
-				src={cookFoodJpg}
-				alt="orderFood-image"
-			/>
+		<div className="main-container-cookfood">
 			{showOrders && <Orders authToken={props.authToken} />}
 
 			{!showOrders && (

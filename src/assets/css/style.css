@@ -29,6 +29,22 @@ header h1 {
   align-items: center;
 }
 
+.main-container-cookfood {
+  display: flex;
+  margin-left: 5rem;
+  margin-top: 0rem;
+  align-items: center;
+  background-image: url(../images/cookfood.jpg);
+  min-height: 100%;
+  min-width: 1024px;
+  width: 80%;
+  height:100%;
+  position:fixed;
+  top: 8%;
+  left: 0;
+}
+
+
 .title-container {
   height: fit-content;
   display: flex;
