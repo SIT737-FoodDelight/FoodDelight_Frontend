@@ -3,6 +3,7 @@ import "../../assets/css/style.css";
 import axios from "axios";
 import { API_BASE_URL } from "../Constants/constants";
 import manageAccountJpg from "../../assets/images/manageAccount.jpg";
+import AutoFillAddress from "./autoFillAddress";
 
 export default props => {
 	const [mobile, setMobile] = useState("");
@@ -25,6 +26,8 @@ export default props => {
 				console.log(response.data);
 				const jsonData = eval(response.data);
 				setExistingPhone(jsonData.mobile_number);
+				setMobile(jsonData.mobile_number)
+				setAddress(jsonData.user_address)
 				setExistingAddress(jsonData.user_address);
 			})
 			.catch(err => alert("Failed with error " + err));
@@ -89,16 +92,9 @@ export default props => {
 					onChange={evnt => setMobile(evnt.target.value)}
 					defaultValue={existingPhone}
 				/>
-
-				<textarea
-					id="description"
-					name="description"
-					className="form-input-text-area"
-					rows="4"
-					cols="50"
-					placeholder="Enter your address"
-					onChange={evnt => setAddress(evnt.target.value)}
-					defaultValue={existingAddress}
+				<AutoFillAddress
+					existingAddress={existingAddress}
+					setAddress={setAddress}
 				/>
 
 				<button className="signup-btn" type="button" onClick={saveUserDetails}>
