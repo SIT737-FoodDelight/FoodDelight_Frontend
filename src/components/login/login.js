@@ -30,7 +30,7 @@ export default (props) => {
 
   const handleGoogleLogin = () => {
     axios({
-      method: 'POST',
+      method: 'GET',
       url: API_BASE_URL + 'auth/google',
       headers: { 'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
@@ -50,7 +50,7 @@ export default (props) => {
   const handleFacebookLogin = () => {
     axios({
       method: 'GET',
-      url: API_BASE_URL + 'auth/google',
+      url: API_BASE_URL + 'auth/facebook',
       headers: { 'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
     },
