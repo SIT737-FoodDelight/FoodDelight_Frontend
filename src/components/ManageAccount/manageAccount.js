@@ -1,89 +1,110 @@
-import React, { useState } from 'react'
-import '../../assets/css/style.css'
-import axios from 'axios'
-import { API_BASE_URL } from '../Constants/constants'
-import manageAccountJpg from '../../assets/images/manageAccount.jpg'
+import React, { useState, useEffect } from "react";
+import "../../assets/css/style.css";
+import axios from "axios";
+import { API_BASE_URL } from "../Constants/constants";
+import manageAccountJpg from "../../assets/images/manageAccount.jpg";
 
-export default (props) => {
-  const [mobile, setMobile] = useState('')
-  const [address, setAddress] = useState('')
-  const [password, setPassword] = useState('')
+export default props => {
+	const [mobile, setMobile] = useState("");
+	const [address, setAddress] = useState("");
+	const [password, setPassword] = useState("");
+	const [existingPhone, setExistingPhone] = useState("");
+	const [existingAddress, setExistingAddress] = useState("");
+	const [reloadData, setReloadData] = useState("");
 
-  const saveUserDetails = () => {
-    console.info(props.username)
-    axios({
-      method: 'POST',
-      url: API_BASE_URL + 'profile/',
-      headers: {
-        'Content-Type': 'application/json',
-        authToken: props.authToken,
-      },
-      data: {
-        username: props.username,
-        password: password,
-        mobileNumber: mobile,
-        address: address
-      },
-    })
-      .then((response) => {
-        if(response.data == "account details saved"){
-          alert('Your account details saved successfully')
-        }
-        else {
-          alert('Details not saved. Please enter again')
-        }
-      })
-  }
+	useEffect(() => {
+		axios({
+			method: "POST",
+			url: API_BASE_URL + "userdetails/",
+			headers: {
+				"Content-Type": "application/json",
+				authToken: props.authToken,
+			},
+		})
+			.then(response => {
+				console.log(response.data);
+				const jsonData = eval(response.data);
+				setExistingPhone(jsonData.mobile_number);
+				setExistingAddress(jsonData.user_address);
+			})
+			.catch(err => alert("Failed with error " + err));
+	}, [reloadData]);
 
-  return (
-    <div className="main-container">
-      <img
-        className="orderfood-image"
-        src={manageAccountJpg}
-        alt="orderFood-image"
-      />
-      <div className="form-container">
-        <h2 className="form-title">Manage Account</h2>
-        <input
-          type="text"
-          className="form-input-text-input"
-          name="username"
-          value={props.username}
-          readOnly="readOnly"
-        />
+	const saveUserDetails = () => {
+		console.info(props.username);
+		axios({
+			method: "POST",
+			url: API_BASE_URL + "profile/",
+			headers: {
+				"Content-Type": "application/json",
+				authToken: props.authToken,
+			},
+			data: {
+				username: props.username,
+				password: password,
+				mobileNumber: mobile,
+				address: address,
+			},
+		})
+			.then(response => {
+				if (response.data == "account details saved") {
+					alert("Your account details saved successfully");
+				} else {
+					alert("Details not saved. Please enter again");
+				}
+			})
+			.catch(err => alert("Failed with error " + err));
+	};
 
-        <input
-          type="text"
-          className="form-input-text-input"
-          name="password"
-          placeholder="Enter Password"
-          onChange={(evnt) => setPassword(evnt.target.value)}
-          required
-        />
+	return (
+		<div className="main-container">
+			<img
+				className="orderfood-image"
+				src={manageAccountJpg}
+				alt="orderFood-image"
+			/>
+			<div className="form-container">
+				<h2 className="form-title">Manage Account</h2>
+				<input
+					type="text"
+					className="form-input-text-input"
+					name="username"
+					value={props.username}
+					readOnly="readOnly"
+				/>
 
-        <input
-          type="text"
-          className="form-input-text-input"
-          name="phone"
-          placeholder="Enter Phone Number"
-          onChange={(evnt) => setMobile(evnt.target.value)}
-          required
-        />
+				<input
+					type="text"
+					className="form-input-text-input"
+					name="password"
+					placeholder="Enter Password"
+					onChange={evnt => setPassword(evnt.target.value)}
+				/>
 
-        <textarea
-          id="description"
-          name="description"
-          className="form-input-text-area"
-          rows="4"
-          cols="50"
-          placeholder="Enter your address"
-          onChange={(evnt) => setAddress(evnt.target.value)}
-        />
+				<input
+					type="text"
+					className="form-input-text-input"
+					name="phone"
+					placeholder="Enter Phone Number"
+					onChange={evnt => setMobile(evnt.target.value)}
+					defaultValue={existingPhone}
+				/>
 
-        <button className="signup-btn" type="button" onClick={saveUserDetails}>
-          Save
-        </button>
-      </div>
-    </div>
-  )
-}
+				<textarea
+					id="description"
+					name="description"
+					className="form-input-text-area"
+					rows="4"
+					cols="50"
+					placeholder="Enter your address"
+					onChange={evnt => setAddress(evnt.target.value)}
+					defaultValue={existingAddress}
+				/>
+
+				<button className="signup-btn" type="button" onClick={saveUserDetails}>
+					Save
+				</button>
+			</div>
+		</div>
+	);
+};

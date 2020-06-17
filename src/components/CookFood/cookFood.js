@@ -8,7 +8,7 @@ import Orders from "./orders";
 export default props => {
 	const [tfn, setTfn] = useState("");
 	const [abn, setAbn] = useState("");
-	const [showOrders, setShowOrders] = useState(false);
+	const [showOrders, setShowOrders] = useState("hideOrders");
 	const [licenseNum, setLicenseNum] = useState("");
 	const [reload, setReload] = useState(false);
 
@@ -23,11 +23,13 @@ export default props => {
 		}).then(response => {
 			console.log(response.data)
 			if (response.data == "cook profile exists") {
-				setShowOrders(true)
+				setShowOrders("showOrders")
 			} else {
-				setShowOrders(false)
+				setShowOrders("hideOrders")
 			}
-		});
+		})
+		.catch((err) => alert("Error displaying screen"+err))
+
 	},[reload])
 
 	const saveCookDetails = () => {
@@ -55,9 +57,9 @@ export default props => {
 
 	return (
 		<div className="main-container-cookfood">
-			{showOrders && <Orders authToken={props.authToken} route="orders/"/>}
+			{showOrders == "showOrders" && <Orders authToken={props.authToken} route="orders/"/>}
 
-			{!showOrders && (
+			{showOrders == "hideOrders" && (
 				<div className="form-container">
 					<h2 className="form-title">Wanna Start Cooking?</h2>
 					<input
@@ -96,6 +98,7 @@ export default props => {
 					</button>
 				</div>
 			)}
+			<label hidden>{showOrders}</label>
 		</div>
 	);
 };

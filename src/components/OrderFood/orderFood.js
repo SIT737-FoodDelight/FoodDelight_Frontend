@@ -24,9 +24,13 @@ export default (props) => {
         itemDescription: description,
       },
     })
-      .then((response) => console.log(response.data))
-      .then(() => {
-        alert('Order details saved successfully')
+      .then((response) => {
+        if(response.data == "Please add address in manage account before placing order") {
+          alert(response.data)
+        }
+        else {
+          alert('Order details saved successfully')
+        }
       })
   }
 
@@ -71,9 +75,10 @@ export default (props) => {
           cols="50"
           placeholder="Item Description"
           onChange={(evnt) => setDescription(evnt.target.value)}
+          required
         />
 
-        <button className="signup-btn" type="button" onClick={saveOrderDetails}>
+        <button className="signup-btn" type="submit" onClick={saveOrderDetails}>
           Save
         </button>
       </div>
