@@ -30,45 +30,45 @@ export default props => {
 
 	const handleGoogleLogin = () => {
     
-    axios({
-      method: 'GET',
-      url: API_BASE_URL + 'auth/google',
-      headers: { 'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-    },
-    })
-      .then((response) => {
-        console.warn(response.data)
-        if (response.data.message == 'login_Success') {
-          props.setIsUserLoggedIn(true)
-          props.setUsername(username)
-          props.setAuthToken(response.data.authToken)
-        } else alert('login failed')
-      })
-      .catch((reason) => alert('login failed' + reason))
+    // axios({
+    //   method: 'GET',
+    //   url: API_BASE_URL + 'auth/google',
+    //   headers: { 'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Origin': '*'
+    // },
+    // })
+    //   .then((response) => {
+    //     console.warn(response.data)
+    //     if (response.data.message == 'login_Success') {
+    //       props.setIsUserLoggedIn(true)
+    //       props.setUsername(username)
+    //       props.setAuthToken(response.data.authToken)
+    //     } else alert('login failed')
+    //   })
+    //   .catch((reason) => alert('login failed' + reason))
 
-      // window.open("https://project-backend-app-friendly-squirrel-qb.mybluemix.net/auth/google");
+     window.open("https://project-backend-app-friendly-squirrel-qb.mybluemix.net/auth/google");
 	};
 
 	const handleFacebookLogin = () => {
-		axios({
-			method: "GET",
-			url: API_BASE_URL + "auth/facebook",
-			headers: {
-				"Content-Type": "application/json",
-				"Access-Control-Allow-Origin": "*",
-			},
-		})
-			.then(response => {
-				console.warn(response.data);
-				if (response.data.message == "login_Success") {
-					props.setIsUserLoggedIn(true);
-					props.setUsername(username);
-					props.setAuthToken(response.data.authToken);
-				} else alert("login failed");
-			})
-    	.catch(reason => alert("login failed" + reason));
-    // window.open("https://project-backend-app-friendly-squirrel-qb.mybluemix.net/auth/facebook");
+		// axios({
+		// 	method: "GET",
+		// 	url: API_BASE_URL + "auth/facebook",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 		"Access-Control-Allow-Origin": "*",
+		// 	},
+		// })
+		// 	.then(response => {
+		// 		console.warn(response.data);
+		// 		if (response.data.message == "login_Success") {
+		// 			props.setIsUserLoggedIn(true);
+		// 			props.setUsername(username);
+		// 			props.setAuthToken(response.data.authToken);
+		// 		} else alert("login failed");
+		// 	})
+    // 	.catch(reason => alert("login failed" + reason));
+    window.open("https://project-backend-app-friendly-squirrel-qb.mybluemix.net/auth/facebook");
 	};
 
 	return (
