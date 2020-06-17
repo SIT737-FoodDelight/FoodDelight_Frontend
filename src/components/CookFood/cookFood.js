@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/css/style.css";
 import axios from "axios";
 import { API_BASE_URL } from "../Constants/constants";
@@ -8,8 +8,27 @@ import Orders from "./orders";
 export default props => {
 	const [tfn, setTfn] = useState("");
 	const [abn, setAbn] = useState("");
-	const [showOrders, setShowOrders] = useState(true);
+	const [showOrders, setShowOrders] = useState(false);
 	const [licenseNum, setLicenseNum] = useState("");
+	const [reload, setReload] = useState(false);
+
+	useEffect(() => {
+		axios({
+			method: "POST",
+			url: API_BASE_URL + "checklicense/",
+			headers: {
+				"Content-Type": "application/json",
+				authToken: props.authToken,
+			},
+		}).then(response => {
+			console.log(response.data)
+			if (response.data == "cook profile exists") {
+				setShowOrders(true)
+			} else {
+				setShowOrders(false)
+			}
+		});
+	},[reload])
 
 	const saveCookDetails = () => {
 		axios({
@@ -25,8 +44,9 @@ export default props => {
 				licenseNum: licenseNum,
 			},
 		}).then(response => {
-			if (response.data == "cooking details saved") {
+			if (response.data == "cook profile saved") {
 				alert("Your details saved successfully");
+				setReload(!reload)
 			} else {
 				alert("Details not saved. Please enter again");
 			}
@@ -35,7 +55,7 @@ export default props => {
 
 	return (
 		<div className="main-container-cookfood">
-			{showOrders && <Orders authToken={props.authToken} />}
+			{showOrders && <Orders authToken={props.authToken} route="orders/"/>}
 
 			{!showOrders && (
 				<div className="form-container">

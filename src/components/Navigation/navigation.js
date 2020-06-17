@@ -1,10 +1,11 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
 import CookFood from '../CookFood/cookFood'
 import AboutUs from '../AboutUs/aboutUs'
 import ManageAccount from '../ManageAccount/manageAccount'
 import OrderFood from '../OrderFood/orderFood'
 import Logout from '../Logout/logout'
+import MyOrders from '../CookFood/myOrders'
 
 export default (props) => {
   return (
@@ -12,11 +13,14 @@ export default (props) => {
       <BrowserRouter>
         <div className="fixed-header">
           <nav>
-            <Link exact="true" to="/OrderFood">
+            <Link to="/OrderFood">
               <button>Order Food</button>
             </Link>
             <Link to="/CookFood">
               <button>Cook Food</button>
+            </Link>
+            <Link to="/MyOrders">
+              <button>MyOrders</button>
             </Link>
             <Link to="/ManageAccount">
               <button>Manage Account</button>
@@ -31,7 +35,10 @@ export default (props) => {
         </div>
         <div>
         <Switch>
-          <Route exact path="/OrderFood">
+          <Route exact path="/" >
+            <Redirect to="/OrderFood" />
+          </Route>
+          <Route exact path="/OrderFood" >
             <OrderFood username={props.username} authToken={props.authToken}/>
           </Route>
           <Route path="/CookFood">
@@ -45,6 +52,9 @@ export default (props) => {
           </Route>
           <Route path="/logout">
             <Logout />
+          </Route>
+          <Route path="/MyOrders">
+            <MyOrders username={props.username} authToken={props.authToken}/>
           </Route>
         </Switch>
         </div>

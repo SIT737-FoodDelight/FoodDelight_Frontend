@@ -71,10 +71,9 @@ function Row(props) {
 											<Button
 												color="primary"
 												variant="outlined"
-												id={row.orderId}
-												onClick={() => console.warn("Accept clicked")}
+												onClick={(evnt) => props.handleAcceptOrder(evnt)}
 											>
-												Accept
+												<p id={row.orderId}>Accept</p>
 											</Button>
 										</TableCell>
 										<TableCell align="right">
@@ -108,14 +107,38 @@ Row.propTypes = {
 	}).isRequired,
 };
 
+
 export default props => {
 	const [reloadData, setReloadData] = useState(true);
 	const [rows, setRows] = useState([]);
+	
+	const handleAcceptOrder = (evnt) => {
+		axios({
+			method: "POST",
+			url: API_BASE_URL + "accept/",
+			headers: {
+				"Content-Type": "application/json",
+				authToken: props.authToken,
+			},
+			data: { order_id: evnt.target.id},
+		}).then(response => {
+			console.log(response);
+			if(response.data == "order accepted"){
+				alert('Order accepted. You can check it in my orders')
+				setReloadData(!reloadData)
+			  }
+			  else {
+				alert('order not accepted. Please try again')
+			  }
+		})
+		.catch((error) => alert('accept failed '+error))
+		
+	}
 
 	useEffect(() => {
 		axios({
 			method: "POST",
-			url: API_BASE_URL + "orders/",
+			url: API_BASE_URL + props.route,
 			headers: {
 				"Content-Type": "application/json",
 				authToken: props.authToken,
@@ -135,7 +158,8 @@ export default props => {
 					)
 				)
 			);
-		});
+		})
+		.catch()
 	}, [reloadData]);
 
 	return (
@@ -152,7 +176,7 @@ export default props => {
 				</TableHead>
 				<TableBody>
 					{rows.map(row => (
-						<Row key={row.name} row={row} />
+						<Row key={row.orderId} row={row} handleAcceptOrder={handleAcceptOrder}/>
 					))}
 				</TableBody>
 			</Table>
