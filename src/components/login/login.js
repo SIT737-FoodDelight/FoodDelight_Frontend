@@ -29,7 +29,8 @@ export default props => {
 	};
 
 	const handleGoogleLogin = () => {
-		/*axios({
+    
+    /*axios({
       method: 'GET',
       url: API_BASE_URL + 'auth/google',
       headers: { 'Content-Type': 'application/json',
