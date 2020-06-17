@@ -6,6 +6,7 @@ import Home from "./components/Home/home";
 
 export default () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState(false);
   const [authToken, setAuthToken] = useState("");
