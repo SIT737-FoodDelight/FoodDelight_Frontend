@@ -226,8 +226,8 @@ nav button{
   font-size: medium;
   border-radius: 25px;
   padding: 5px 8px;
-  background-color: black;
-  text-decoration-color: white;
+  background-color: white;
+  text-decoration-color: black;
 }
 
 p{
