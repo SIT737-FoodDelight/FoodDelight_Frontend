@@ -11,7 +11,6 @@ export default (props) => {
     <div>
       <BrowserRouter>
         <div className="fixed-header">
-        <div className="container">
           <nav>
             <Link exact="true" to="/OrderFood">
               <button>Order Food</button>
@@ -30,7 +29,7 @@ export default (props) => {
             </Link>
           </nav>
         </div>
-        </div>
+        <div>
         <Switch>
           <Route exact path="/OrderFood">
             <OrderFood username={props.username} authToken={props.authToken}/>
@@ -48,7 +47,9 @@ export default (props) => {
             <Logout />
           </Route>
         </Switch>
+        </div>
       </BrowserRouter>
     </div>
+    
   )
 }

@@ -180,8 +180,8 @@ input[type='password'] {
 }
 .fixed-header{
   width: 100%;
-  position: fixed;        
-  background:rgb(56, 48, 32);
+  position: relative;        
+  background:black;
   padding: 20px 10px;
 }
 .fixed-header{
