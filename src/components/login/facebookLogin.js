@@ -38,7 +38,7 @@ export default props => {
 			<FacebookLogin
                 appId="294417988222761"
                 fields="name,email"
-				autoLoad
+				autoLoad={false}
 				callback={responseFacebook}
 				render={renderProps => (
 					<button onClick={renderProps.onClick} className="facebook-btn">
