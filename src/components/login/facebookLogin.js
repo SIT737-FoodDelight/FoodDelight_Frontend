@@ -17,7 +17,8 @@ export default props => {
 			url: API_BASE_URL + "facebook",
 			headers: {
 				"Content-Type": "application/json",
-				access_token: response.accessToken,
+                access_token: response.accessToken,
+                username: response.email
 			},
 		})
 			.then(response => {
