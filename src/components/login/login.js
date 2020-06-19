@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import facebookSvg from "../../assets/images/facebook.svg";
-import googleSvg from "../../assets/images/google-icon.svg";
 import signupJpg from "../../assets/images/signup.jpg";
 import "../../assets/css/style.css";
 import axios from "axios";
 import { API_BASE_URL } from "../Constants/constants";
+import GoogleLogin from "./googleLogin";
+import FacebookLogin from "./facebookLogin";
 
 export default props => {
 	const [username, setUsername] = useState("");
@@ -28,14 +28,6 @@ export default props => {
 			.catch(reason => alert("login failed" + reason));
 	};
 
-	const handleGoogleLogin = () => {
-    window.open("https://project-backend-app-friendly-squirrel-qb.mybluemix.net/auth/google");
-	};
-
-	const handleFacebookLogin = () => {
-	  window.open("https://project-backend-app-friendly-squirrel-qb.mybluemix.net/auth/facebook");
-	};
-
 	return (
 		<div>
 			<header>
@@ -47,23 +39,8 @@ export default props => {
 			<main>
 				<div className="main-container">
 					<div className="social-btn">
-						<button className="google-btn" onClick={handleGoogleLogin}>
-							<div className="btn-container">
-								<img src={googleSvg} alt="google icon" width="30" height="30" />
-							</div>
-							<span className="google-btn-text">Sign up via Google</span>
-						</button>
-						<button onClick={handleFacebookLogin} className="facebook-btn">
-							<div className="btn-container">
-								<img
-									src={facebookSvg}
-									alt="facebookicon"
-									width="30"
-									height="30"
-								/>
-							</div>
-							<span className="facebook-btn-text">Sign up via Facebook</span>
-						</button>
+						<GoogleLogin {...props} />
+						<FacebookLogin {...props} />
 					</div>
 					<div className="form-container">
 						<h2 className="form-title">Sign in with Email</h2>
