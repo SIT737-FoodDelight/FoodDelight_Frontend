@@ -17,18 +17,11 @@ export default props => {
 		);
 	}
 	if (props.userType === "facebook") {
-		window.FB.logout();
 		const logout = () => {
 			window.FB.logout();
 			window.location.replace("/");
 		};
-		return (
-			<button
-				onClick={logout}
-			>
-				Logout
-			</button>
-		);
+		return <button onClick={logout}>Logout</button>;
 	} else {
 		return <button onClick={() => window.location.replace("/")}>Logout</button>;
 	}
