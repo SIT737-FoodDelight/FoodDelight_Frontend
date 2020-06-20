@@ -26,7 +26,7 @@ export default props => {
 				if (response.data.message == "login_Success") {
 					props.setIsUserLoggedIn(true);
 					props.setUsername(user);
-					props.setUserType("");
+					props.setUserType("facebook");
 					props.setAuthToken(response.data.authToken);
 				} else alert("login failed");
 			})

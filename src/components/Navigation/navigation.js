@@ -6,7 +6,6 @@ import ManageAccount from "../ManageAccount/manageAccount";
 import OrderFood from "../OrderFood/orderFood";
 import Logout from "../Logout/logout";
 import MyOrders from "../CookFood/myOrders";
-import { GoogleLogout } from "react-google-login";
 
 export default props => {
 	return (
@@ -30,22 +29,7 @@ export default props => {
 							<button>About us</button>
 						</Link>
 						<Link to="/logout">
-							{props.userType === "google" && (
-								<GoogleLogout
-									clientId="165578072854-9fm3ip67busp7im0c2chqefn8vg69ls1.apps.googleusercontent.com"
-									buttonText="Logout"
-									render={renderProps => (
-										<button
-											onClick={renderProps.onClick}
-											disabled={renderProps.disabled}
-										>
-											Logout
-										</button>
-									)}
-									onLogoutSuccess={() => window.location.replace("/")}
-								/>
-							)}
-							{props.userType === "" && <Logout />}
+							<Logout {...props}/>
 						</Link>
 					</nav>
 				</div>
